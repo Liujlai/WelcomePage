@@ -22,6 +22,42 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="181" y="174"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="4Vy-1l-tjT">
+            <objects>
+                <viewController storyboardIdentifier="second" id="uei-xw-8he" customClass="SecondViewController" customModule="welcomePage" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hLG-C8-V32"/>
+                        <viewControllerLayoutGuide type="bottom" id="iew-AM-EKq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mMs-AL-fZc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome~~~~😏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbg-Q6-TrY">
+                                <rect key="frame" x="11" y="54" width="320" height="73"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.33640981889999999" green="0.81905012659999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="cbg-Q6-TrY" firstAttribute="top" secondItem="hLG-C8-V32" secondAttribute="bottom" constant="70" id="SRE-wg-d2h"/>
+                            <constraint firstAttribute="trailing" secondItem="cbg-Q6-TrY" secondAttribute="trailing" id="TWC-Ez-ogU"/>
+                            <constraint firstItem="iew-AM-EKq" firstAttribute="top" secondItem="cbg-Q6-TrY" secondAttribute="bottom" constant="405" id="bhT-BM-4gK"/>
+                            <constraint firstItem="cbg-Q6-TrY" firstAttribute="leading" secondItem="mMs-AL-fZc" secondAttribute="leading" id="qg3-Um-aF4"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nNI-UV-NS5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="572" y="174"/>
         </scene>
     </scenes>
 </document>

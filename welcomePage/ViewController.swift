@@ -59,6 +59,10 @@ class ViewController: UIViewController,UIScrollViewDelegate{
             self.btn.setTitleColor(UIColor.grayColor(), forState: UIControlState.Highlighted)
             self.btn.backgroundColor = UIColor.orangeColor()
             self.btn.alpha=0
+            self.btn.addTarget(self, action: "buttonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+            
+            
+            
             UIView.animateWithDuration(1.5, delay: 0.5, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                 self.btn.frame=CGRectMake(6*self.view.frame.width, self.view.frame.height-100, self.view.frame.width, 50)
                 self.btn.alpha = 1
@@ -66,7 +70,12 @@ class ViewController: UIViewController,UIScrollViewDelegate{
                 }, completion:nil)
         }
     }
-    
+    func buttonClick(button:UIButton){
+        let sb=UIStoryboard(name: "Main", bundle: nil)
+        let second = sb.instantiateViewControllerWithIdentifier("second") as! UIViewController
+        self.presentViewController(second, animated: true, completion: nil)
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
