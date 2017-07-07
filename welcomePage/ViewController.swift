@@ -8,13 +8,52 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController,UIScrollViewDelegate{
+    var scrollView=UIScrollView()
+    var pageControl=UIPageControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        pageControl.center = CGPointMake(self.view.frame.width/2,self.view.frame.height-30)
+        pageControl.currentPageIndicatorTintColor=UIColor.redColor()
+        pageControl.pageIndicatorTintColor = UIColor.whiteColor()
+        pageControl.numberOfPages = 7
+        pageControl.addTarget(self, action: "scrollViewDidEndDecelerating", forControlEvents: UIControlEvents.ValueChanged)
+        
+        
+        
+        
+        scrollView.frame=self.view.bounds
+        scrollView.contentSize = CGSizeMake(7*self.view.frame.width, 0)
+        scrollView.pagingEnabled=true
+        scrollView.bounces=false
+        scrollView.showsHorizontalScrollIndicator=false
+        scrollView.delegate = self
+        self.view.addSubview(scrollView)
+        for i in 0...7{
+            print(i)
+            let image=UIImage(named: "\(i+1)")
+            let imageView = UIImageView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+            imageView.image=image
+            var frame=imageView.frame
+            frame.origin.x = CGFloat(i)*frame.size.width
+            imageView.frame = frame
+            scrollView.addSubview(imageView)
+            self.view.addSubview(pageControl)
+        }
+        
+        
+        
+        
     }
 
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let index = Int(scrollView.contentOffset.x/self.view.frame.size.width)
+        pageControl.currentPage = index
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
