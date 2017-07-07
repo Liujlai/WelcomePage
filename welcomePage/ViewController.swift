@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController,UIScrollViewDelegate{
     var scrollView=UIScrollView()
     var pageControl=UIPageControl()
-    
+    var btn = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -52,6 +52,19 @@ class ViewController: UIViewController,UIScrollViewDelegate{
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let index = Int(scrollView.contentOffset.x/self.view.frame.size.width)
         pageControl.currentPage = index
+        if(index == 6){
+            self.btn.frame=CGRectMake(6*self.view.frame.width, self.view.frame.size.height, self.view.frame.width, 50)
+            self.btn.setTitle("点击进入", forState: UIControlState.Normal)
+            self.btn.titleLabel?.font=UIFont.systemFontOfSize(20)
+            self.btn.setTitleColor(UIColor.grayColor(), forState: UIControlState.Highlighted)
+            self.btn.backgroundColor = UIColor.orangeColor()
+            self.btn.alpha=0
+            UIView.animateWithDuration(1.5, delay: 0.5, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                self.btn.frame=CGRectMake(6*self.view.frame.width, self.view.frame.height-100, self.view.frame.width, 50)
+                self.btn.alpha = 1
+                self.scrollView.addSubview(self.btn)
+                }, completion:nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
