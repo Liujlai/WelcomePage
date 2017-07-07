@@ -15,6 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        //        判断app第一次启动
+        if(!NSUserDefaults.standardUserDefaults().boolForKey("firstLaunch")){
+            self.window?.rootViewController = ViewController()
+            self.window?.makeKeyAndVisible()
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstLaunch")
+        }else{
+            let sb=UIStoryboard(name: "Main", bundle: nil)
+            let second = sb.instantiateViewControllerWithIdentifier("second") as UIViewController
+            self.window?.rootViewController = second
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstLaunch")
+        }
+        
+
         // Override point for customization after application launch.
         return true
     }
