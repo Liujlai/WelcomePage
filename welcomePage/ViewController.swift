@@ -15,19 +15,18 @@ class ViewController: UIViewController,UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        pageControl.center = CGPointMake(self.view.frame.width/2,self.view.frame.height-30)
-        pageControl.currentPageIndicatorTintColor=UIColor.redColor()
-        pageControl.pageIndicatorTintColor = UIColor.whiteColor()
+       
+        pageControl.center = CGPoint(x: self.view.frame.width/2,y: self.view.frame.height-30)
+        pageControl.currentPageIndicatorTintColor=UIColor.red
+        pageControl.pageIndicatorTintColor = UIColor.white
         pageControl.numberOfPages = 7
-        pageControl.addTarget(self, action: "scrollViewDidEndDecelerating", forControlEvents: UIControlEvents.ValueChanged)
+        pageControl.addTarget(self, action: "scrollViewDidEndDecelerating", for: UIControlEvents.valueChanged)
         
         
-        
-        
+       
         scrollView.frame=self.view.bounds
-        scrollView.contentSize = CGSizeMake(7*self.view.frame.width, 0)
-        scrollView.pagingEnabled=true
+        scrollView.contentSize = CGSize(width: 7*self.view.frame.width, height: 0)
+        scrollView.isPagingEnabled=true
         scrollView.bounces=false
         scrollView.showsHorizontalScrollIndicator=false
         scrollView.delegate = self
@@ -35,7 +34,7 @@ class ViewController: UIViewController,UIScrollViewDelegate{
         for i in 0...7{
             print(i)
             let image=UIImage(named: "\(i+1)")
-            let imageView = UIImageView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             imageView.image=image
             var frame=imageView.frame
             frame.origin.x = CGFloat(i)*frame.size.width
@@ -48,32 +47,31 @@ class ViewController: UIViewController,UIScrollViewDelegate{
         
         
     }
-
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+  
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = Int(scrollView.contentOffset.x/self.view.frame.size.width)
         pageControl.currentPage = index
         if(index == 6){
-            self.btn.frame=CGRectMake(6*self.view.frame.width, self.view.frame.size.height, self.view.frame.width, 50)
-            self.btn.setTitle("点击进入", forState: UIControlState.Normal)
-            self.btn.titleLabel?.font=UIFont.systemFontOfSize(20)
-            self.btn.setTitleColor(UIColor.grayColor(), forState: UIControlState.Highlighted)
-            self.btn.backgroundColor = UIColor.orangeColor()
+            self.btn.frame=CGRect(x: 6*self.view.frame.width, y: self.view.frame.size.height, width: self.view.frame.width, height: 50)
+            self.btn.setTitle("点击进入", for: UIControlState())
+            self.btn.titleLabel?.font=UIFont.systemFont(ofSize: 20)
+            self.btn.setTitleColor(UIColor.gray, for: UIControlState.highlighted)
+            self.btn.backgroundColor = UIColor.orange
             self.btn.alpha=0
-            self.btn.addTarget(self, action: "buttonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+            self.btn.addTarget(self, action: #selector(ViewController.buttonClick(_:)), for: UIControlEvents.touchUpInside)
             
-            
-            
-            UIView.animateWithDuration(1.5, delay: 0.5, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-                self.btn.frame=CGRectMake(6*self.view.frame.width, self.view.frame.height-100, self.view.frame.width, 50)
+           
+            UIView.animate(withDuration: 1.5, delay: 0.5, options: UIViewAnimationOptions(), animations: { () -> Void in
+                self.btn.frame=CGRect(x: 6*self.view.frame.width, y: self.view.frame.height-100, width: self.view.frame.width, height: 50)
                 self.btn.alpha = 1
                 self.scrollView.addSubview(self.btn)
                 }, completion:nil)
         }
     }
-    func buttonClick(button:UIButton){
+    func buttonClick(_ button:UIButton){
         let sb=UIStoryboard(name: "Main", bundle: nil)
-        let second = sb.instantiateViewControllerWithIdentifier("second") as! UIViewController
-        self.presentViewController(second, animated: true, completion: nil)
+        let second = sb.instantiateViewController(withIdentifier: "second") 
+        self.present(second, animated: true, completion: nil)
         
     }
     override func didReceiveMemoryWarning() {
